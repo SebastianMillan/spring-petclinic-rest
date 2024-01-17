@@ -25,7 +25,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @Testcontainers
 @Sql(value = "classpath:db/postgresql/initDB.sql", executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
 @Sql(value = "classpath:test/insert-pet.sql", executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
-//@Sql(value = "classpath:test/delete-pet.sql", executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
+@Sql(value = "classpath:test/delete-pet.sql", executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
 class PetRepositoryTest {
 
     @Autowired
@@ -50,5 +50,6 @@ class PetRepositoryTest {
 
     @Test
     void delete() {
+
     }
 }
