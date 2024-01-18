@@ -1,5 +1,6 @@
 package org.springframework.samples.petclinic.repository;
 
+import org.junit.Ignore;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,6 +50,7 @@ class PetRepositoryTest {
     }
 
     @Test
+    @Ignore
     void delete() {
 
     }

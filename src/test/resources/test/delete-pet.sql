@@ -1,4 +1,4 @@
-delete from pets;
-delete from types;
-delete from owners;
-delete from visits;
+delete from types ON CONFLICT DO NOTHING;
+delete from owners ON CONFLICT DO NOTHING;
+delete from pets ON CONFLICT DO NOTHING;
+delete from visits ON CONFLICT DO NOTHING;
