@@ -39,7 +39,10 @@ public class VisitRepositoryTests {
 
     @Test
     void findByPetId(){
-        List<Visit> result = visitRepository.findByPetId(1);
+        List<Visit> result = visitRepository.findByPetId(7);
         Assertions.assertFalse(result.isEmpty());
+        Assertions.assertEquals("spayed", result.get(1).getDescription());
     }
+
+
 }
