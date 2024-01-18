@@ -7,7 +7,9 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 import org.springframework.boot.testcontainers.service.connection.ServiceConnection;
+import org.springframework.samples.petclinic.model.Pet;
 import org.springframework.samples.petclinic.model.PetType;
+import org.springframework.samples.petclinic.model.Visit;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.jdbc.Sql;
 import org.testcontainers.containers.PostgreSQLContainer;
@@ -25,11 +27,14 @@ import static org.junit.jupiter.api.Assertions.*;
 @Testcontainers
 @Sql(value = "classpath:db/postgresql/initDB.sql", executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
 @Sql(value = "classpath:test/insert-pet.sql", executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
-@Sql(value = "classpath:test/delete-pet.sql", executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
+//@Sql(value = "classpath:test/delete-pet.sql", executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
 class PetRepositoryTest {
 
     @Autowired
     PetRepository springDataPetRepository;
+
+    @Autowired
+    VisitRepository visitRepository;
 
     @Container
     @ServiceConnection
@@ -50,6 +55,11 @@ class PetRepositoryTest {
 
     @Test
     void delete() {
+        Pet pet = springDataPetRepository.findById(1);
+        List<Visit> visitas = pet.getVisits();
+        springDataPetRepository.delete(pet);
+        assertNull(springDataPetRepository.findById(1));
+        assertNull(visitRepository.findById(1));
 
     }
 }
